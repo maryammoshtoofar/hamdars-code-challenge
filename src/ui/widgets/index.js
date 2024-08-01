@@ -1,3 +1,3 @@
-export * from "./StyledChapters";
-export * from "./StyledChapter";
-export * from "./StyledChapterProgress";
+export * from "./chapter";
+export * from "./chapter-progress";
+export * from "./chapters";

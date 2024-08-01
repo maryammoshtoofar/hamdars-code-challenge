@@ -1,6 +1,5 @@
 import React from "react";
-import { StyledHeader, Box, Item, SubItem } from "src/ui/layout/StyledHeader";
-import styled from "styled-components";
+import { StyledHeader, Box, Item, SubItem } from "src/ui/layout";
 import { GoTrophy } from "react-icons/go";
 import { MdHexagon } from "react-icons/md";
 import { BsFillLightningFill } from "react-icons/bs";

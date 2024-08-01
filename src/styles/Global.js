@@ -1,5 +1,4 @@
 import styled, { createGlobalStyle, css } from "styled-components";
-import { device } from "./BreakPoints";
 import fontsCss from './fonts.module.css'
 export const GlobalStyles = createGlobalStyle`
  ${fontsCss} // this works as a normal styled css
@@ -98,15 +97,4 @@ export const SmallDeviceShow = css`
   @media screen and (min-width: 600px) {
     display: none;
   }
-`;
-
-export const SmallDevicesHidden = css`
-  @media ${device.sm} {
-    display: none;
-  }
-`;
-
-export const ResizableBox = styled.div`
-  width: ${(props) =>
-    typeof props.width === "string" ? props.width : `${props.width}px`};
 `;

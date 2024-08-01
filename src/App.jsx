@@ -1,13 +1,12 @@
 import React from "react";
 import { Header, Footer } from "src/components/layout";
-import styled, { ThemeProvider } from "styled-components";
+import { ThemeProvider } from "styled-components";
 import { theme } from "src/styles/Theme";
 import { GlobalStyles } from "src/styles/Global";
 import { Chapters, Chapter } from "src/components/widgets/";
+import { Container } from "src/ui/layout";
+
 function App() {
-  const Container = styled.div`
-    position: relative;
-  `;
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyles />

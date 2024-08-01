@@ -1,2 +1,2 @@
 export * from "./icons";
-export * from "./CircularSegmentedProgress";
+export * from "./circular-segment-progress";
