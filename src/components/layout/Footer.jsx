@@ -30,6 +30,7 @@ const StyledFooter = styled.footer`
   padding: 0.4rem 0.6rem;
   border-top-right-radius: 0.9rem;
   border-top-left-radius: 0.9rem;
+  z-index: 2;
 `;
 
 const FooterIcon = styled.span`

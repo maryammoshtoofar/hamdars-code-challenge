@@ -15,6 +15,11 @@ function App() {
         <Header />
         <Chapters>
           <Chapter />
+          <Chapter />
+          <Chapter />
+          <Chapter />
+          <Chapter />
+          <Chapter />
         </Chapters>
         <Footer />
       </Container>

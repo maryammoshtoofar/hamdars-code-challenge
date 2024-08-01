@@ -10,7 +10,8 @@ export const StyledCard = styled.div`
   position: relative;
   background-color: ${({ theme }) => theme.colors.veryLightBlue};
   font-size: 0.8rem;
-  width: 100%;
+  width: 236px;
+  height: 64px;
   display: flex;
   gap: 0.8rem;
   flex-direction: column;
@@ -32,7 +33,7 @@ export const StyledStudyTime = styled.div`
 export const StyledChevron = styled.span`
   position: absolute;
   top: 40%;
-  left: 2%;
+  left: 5%;
   cursor: pointer;
 `;
 
@@ -51,7 +52,7 @@ export const Chapter = ({ details }) => {
   return (
     <StyledChapter>
       <StyledCard>
-        <StyledParagrapgh>فصل 1: مولکول ها در خدمت تندرستی</StyledParagrapgh>
+        <StyledParagrapgh>فصل 1</StyledParagrapgh>
         <StyledStudyTime>
           <span>{studyTimeInPersian("00:00")}</span>
           <StudyTimeIcon />
