@@ -2,6 +2,7 @@
   "name": "hamdars-code-challenge",
   "private": true,
   "version": "0.0.0",
+  "homepage": "https://maryammoshtoofar.github.io/hamdars-code-challenge",
   "type": "module",
   "scripts": {
     "dev": "vite",
