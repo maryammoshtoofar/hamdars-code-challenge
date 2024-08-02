@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 export const StyledProgressCircle = styled.div`
-  width: 64px;
-  height: 64px;
+  width: 70px;
+  height: 70px;
   position: relative;
   display: flex;
   justify-content: center;
@@ -13,19 +13,24 @@ export const StyledCircularSVG = styled.svg`
   transform: rotate(-90deg);
   width: 100%;
   height: 100%;
+  position: absolute;
+  top: 0%;
+  left: 0;
 `;
 
-export const StyledCircleBG = styled.path`
+export const StyledCircleBG = styled.circle`
   fill: none;
+  stroke-width: 3;
   stroke: ${({ theme }) => theme.colors.lightGray};
-  stroke-width: 3.8;
 `;
 
-export const StyledCircle = styled.path`
+export const StyledCircle = styled.circle`
   fill: none;
-  stroke-width: 2.8;
+  stroke-width: 3;
   stroke-linecap: round;
-  stroke: ${({ theme }) => theme.colors.lightBlue};
-  stroke-dasharray: ${({ progress }) => `${progress}, 100`};
-  transition: stroke-dasharray 1s ease;
+  stroke: ${({ theme }) => theme.colors.blue};
+  transition: stroke-dashoffset 0.9s ease;
+  stroke-dasharray: ${({ circumference }) => circumference};
+  stroke-dashoffset: ${({ progress, circumference }) =>
+    circumference - (progress / 100) * circumference};
 `;

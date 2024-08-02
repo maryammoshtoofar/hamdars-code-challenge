@@ -43,3 +43,8 @@ export function formatStudyTime(mins) {
   let formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
   return `${formattedHours}:${formattedMinutes}`;
 }
+
+export function calcUnitProgress(current, max, min) {
+  let progress = Math.ceil((1 - current / (max - min)) * 100);
+  return progress;
+}

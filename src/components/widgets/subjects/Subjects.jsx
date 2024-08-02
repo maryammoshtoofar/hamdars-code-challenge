@@ -16,7 +16,7 @@ import { EffectCreative } from "swiper/modules";
 import { theme } from "src/styles/Theme";
 
 import { useGetAllUnitsQuery } from "src/redux/features/api/api-slice";
-import { formatStudyTime } from "src/utils";
+import { formatStudyTime, calcUnitProgress } from "src/utils";
 
 export const StyledSubjects = styled.div`
   position: fixed;
@@ -73,19 +73,10 @@ export const StyledSubjectName = styled.span`
   color: ${({ theme }) => theme.colors.black};
   font-size: 0.8rem;
   font-weight: 300;
-  padding: 0 .2rem;
+  padding: 0 0.2rem;
   text-align: center;
 `;
 export const Subjects = () => {
-  const [progress, setProgress] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setProgress((prev) => (prev < 100 ? prev + 10 : 0));
-    }, 1000);
-    return () => clearInterval(interval);
-  }, []);
-
   const { data, error, isLoading } = useGetAllUnitsQuery();
 
   useEffect(() => {
@@ -109,35 +100,41 @@ export const Subjects = () => {
           limitProgress: 3,
           prev: {
             translate: ["-160%", "20%", -100],
-            // origin: "bottom",
           },
           next: {
             translate: ["140%", "20%", -100],
-            // origin: "bottom",
           },
         }}
         className="mySwiper"
       >
         {data &&
-          data.map((unit) => (
-            <SwiperSlide className="swiper-slide" key={unit.id}>
-              <StyledSubject>
-                <CircularProgress progress={progress}>
-                  <Image src={unit.unit_icon} alt="adabiayt" />
-                </CircularProgress>
-                <StyledSubjectBox>
-                  <StyledLevelText>
-                    سطح {unit.hamdarsUserUnitLevelIndex}
-                  </StyledLevelText>
-                  <StyledSubjectName>{unit.name}</StyledSubjectName>
-                  <StyledStudyTime>
-                    <span>{formatStudyTime(unit.sum_user_study)}</span>
-                    <StudyTimeIcon color={theme.colors.black} />
-                  </StyledStudyTime>
-                </StyledSubjectBox>
-              </StyledSubject>
-            </SwiperSlide>
-          ))}
+          data.map((unit) => {
+            const progress = calcUnitProgress(
+              unit.hamdarsUserCurrentUnitLevelPoint,
+              unit.hamdarsUserMaxUnitLevelPoint,
+              unit.hamdarsUserMinUnitLevelPoint
+            );
+            console.log(`${unit.name}: ${progress}`);
+            return (
+              <SwiperSlide className="swiper-slide" key={unit.id}>
+                <StyledSubject>
+                  <CircularProgress progress={progress}>
+                    <Image src={unit.unit_icon} alt="adabiayt" />
+                  </CircularProgress>
+                  <StyledSubjectBox>
+                    <StyledLevelText>
+                      سطح {unit.hamdarsUserUnitLevelIndex}
+                    </StyledLevelText>
+                    <StyledSubjectName>{unit.name}</StyledSubjectName>
+                    <StyledStudyTime>
+                      <span>{formatStudyTime(unit.sum_user_study)}</span>
+                      <StudyTimeIcon color={theme.colors.black} />
+                    </StyledStudyTime>
+                  </StyledSubjectBox>
+                </StyledSubject>
+              </SwiperSlide>
+            );
+          })}
       </Swiper>
     </StyledSubjects>
   );
