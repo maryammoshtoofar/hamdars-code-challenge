@@ -20,7 +20,7 @@ import { formatStudyTime } from "src/utils";
 
 export const StyledSubjects = styled.div`
   position: fixed;
-  top: 70%;
+  top: 65%;
   left: -75%;
   background-color: white;
   z-index: 2;
@@ -34,13 +34,13 @@ export const StyledSubjects = styled.div`
 `;
 
 export const StyledSubject = styled.div`
-  background-color: ${({ theme }) => theme.colors.lightBlue};
+  background-color: ${({ theme }) => theme.colors.veryLightBlue};
   color: ${({ theme }) => theme.colors.black};
   border-top-right-radius: 29px;
   border-top-left-radius: 29px;
-  padding-bottom: 0.5rem;
   display: flex;
-  width: 90%;
+  gap: 0.2rem;
+  width: 100%;
   height: 100%;
   flex-direction: column;
   align-items: center;
@@ -50,7 +50,7 @@ const StyledSubjectBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.4rem;
+  gap: 0.6rem;
 `;
 const Image = styled.img`
   width: 3rem;
@@ -65,13 +65,16 @@ const StyledLevelText = styled.span`
   background-color: ${({ theme }) => theme.colors.yellow};
   color: ${({ theme }) => theme.colors.black};
   border-radius: 1.2rem;
-  font-size: 0.5rem;
+  font-size: 0.6rem;
   padding: 0.2rem 0.4rem;
 `;
 
 export const StyledSubjectName = styled.span`
   color: ${({ theme }) => theme.colors.black};
-  font-size: 0.6rem;
+  font-size: 0.8rem;
+  font-weight: 300;
+  padding: 0 .2rem;
+  text-align: center;
 `;
 export const Subjects = () => {
   const [progress, setProgress] = useState(0);
@@ -135,81 +138,6 @@ export const Subjects = () => {
               </StyledSubject>
             </SwiperSlide>
           ))}
-        {/* <SwiperSlide className="swiper-slide">
-          <StyledSubject>
-            <CircularProgress progress={progress}>
-              <Image src="icons/adabiyat.png" alt="adabiayt" />
-            </CircularProgress>
-            <StyledSubjectBox>
-              <StyledLevelText>سطح 0</StyledLevelText>
-              <StyledSubjectName>شیمی 3</StyledSubjectName>
-              <StyledStudyTime>
-                <span>{studyTimeInPersian("23:30")}</span>
-                <StudyTimeIcon color={theme.colors.black} />
-              </StyledStudyTime>
-            </StyledSubjectBox>
-          </StyledSubject>
-        </SwiperSlide>
-        <SwiperSlide className="swiper-slide">
-          <StyledSubject>
-            <CircularProgress progress={progress}>
-              <Image src="icons/biology.png" alt="biology" />
-            </CircularProgress>
-            <StyledSubjectBox>
-              <StyledLevelText>سطح 1</StyledLevelText>
-              <StyledSubjectName>شیمی 3</StyledSubjectName>
-              <StyledStudyTime>
-                <span>{studyTimeInPersian("23:30")}</span>
-                <StudyTimeIcon color={theme.colors.black} />
-              </StyledStudyTime>
-            </StyledSubjectBox>
-          </StyledSubject>
-        </SwiperSlide>
-        <SwiperSlide className="swiper-slide">
-          <StyledSubject>
-            <CircularProgress progress={progress}>
-              <Image src="icons/dini.png" alt="dini" />
-            </CircularProgress>
-            <StyledSubjectBox>
-              <StyledLevelText>سطح 2</StyledLevelText>
-              <StyledSubjectName>شیمی 3</StyledSubjectName>
-              <StyledStudyTime>
-                <span>{studyTimeInPersian("23:30")}</span>
-                <StudyTimeIcon color={theme.colors.black} />
-              </StyledStudyTime>
-            </StyledSubjectBox>
-          </StyledSubject>
-        </SwiperSlide>
-        <SwiperSlide className="swiper-slide">
-          <StyledSubject>
-            <CircularProgress progress={progress}>
-              <Image src="icons/geometry.png" alt="geometry" />
-            </CircularProgress>
-            <StyledSubjectBox>
-              <StyledLevelText>سطح 3</StyledLevelText>
-              <StyledSubjectName>شیمی 3</StyledSubjectName>
-              <StyledStudyTime>
-                <span>{studyTimeInPersian("23:30")}</span>
-                <StudyTimeIcon color={theme.colors.black} />
-              </StyledStudyTime>
-            </StyledSubjectBox>
-          </StyledSubject>
-        </SwiperSlide>
-        <SwiperSlide className="swiper-slide">
-          <StyledSubject>
-            <CircularProgress progress={progress}>
-              <Image src="icons/math.png" alt="math" />
-            </CircularProgress>
-            <StyledSubjectBox>
-              <StyledLevelText>سطح 4</StyledLevelText>
-              <StyledSubjectName>شیمی 3</StyledSubjectName>
-              <StyledStudyTime>
-                <span>{studyTimeInPersian("23:30")}</span>
-                <StudyTimeIcon color={theme.colors.black} />
-              </StyledStudyTime>
-            </StyledSubjectBox>
-          </StyledSubject>
-        </SwiperSlide> */}
       </Swiper>
     </StyledSubjects>
   );
