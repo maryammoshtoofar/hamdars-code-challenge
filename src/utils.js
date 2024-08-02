@@ -35,3 +35,11 @@ export function calcChapterProgress(progress) {
   }
   return clippings;
 }
+
+export function formatStudyTime(mins) {
+  let hours = Math.floor(mins / 60);
+  let minutes = mins - hours * 60;
+  let formattedHours = hours < 10 ? `0${hours}` : hours;
+  let formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
+  return `${formattedHours}:${formattedMinutes}`;
+}

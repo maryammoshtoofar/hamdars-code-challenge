@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { CircularProgress, StudyTimeIcon } from "src/components/base";
 import { StyledStudyTime } from "src/ui/widgets";
-import { studyTimeInPersian } from "src/utils";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 // Import Swiper styles
@@ -14,7 +13,10 @@ import "./style.css";
 
 // import required modules
 import { EffectCreative } from "swiper/modules";
-import { theme } from "../../../styles/Theme";
+import { theme } from "src/styles/Theme";
+
+import { useGetAllUnitsQuery } from "src/redux/features/api/api-slice";
+import { formatStudyTime } from "src/utils";
 
 export const StyledSubjects = styled.div`
   position: fixed;
@@ -80,6 +82,12 @@ export const Subjects = () => {
     }, 1000);
     return () => clearInterval(interval);
   }, []);
+
+  const { data, error, isLoading } = useGetAllUnitsQuery();
+
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
   return (
     <StyledSubjects>
       <Swiper
@@ -107,7 +115,27 @@ export const Subjects = () => {
         }}
         className="mySwiper"
       >
-        <SwiperSlide className="swiper-slide">
+        {data &&
+          data.map((unit) => (
+            <SwiperSlide className="swiper-slide" key={unit.id}>
+              <StyledSubject>
+                <CircularProgress progress={progress}>
+                  <Image src={unit.unit_icon} alt="adabiayt" />
+                </CircularProgress>
+                <StyledSubjectBox>
+                  <StyledLevelText>
+                    سطح {unit.hamdarsUserUnitLevelIndex}
+                  </StyledLevelText>
+                  <StyledSubjectName>{unit.name}</StyledSubjectName>
+                  <StyledStudyTime>
+                    <span>{formatStudyTime(unit.sum_user_study)}</span>
+                    <StudyTimeIcon color={theme.colors.black} />
+                  </StyledStudyTime>
+                </StyledSubjectBox>
+              </StyledSubject>
+            </SwiperSlide>
+          ))}
+        {/* <SwiperSlide className="swiper-slide">
           <StyledSubject>
             <CircularProgress progress={progress}>
               <Image src="icons/adabiyat.png" alt="adabiayt" />
@@ -181,7 +209,7 @@ export const Subjects = () => {
               </StyledStudyTime>
             </StyledSubjectBox>
           </StyledSubject>
-        </SwiperSlide>
+        </SwiperSlide> */}
       </Swiper>
     </StyledSubjects>
   );
