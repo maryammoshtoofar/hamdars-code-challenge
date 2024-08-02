@@ -3,7 +3,7 @@ import { Header, Footer } from "src/components/layout";
 import { ThemeProvider } from "styled-components";
 import { theme } from "src/styles/Theme";
 import { GlobalStyles } from "src/styles/Global";
-import { Chapters, Chapter } from "src/components/widgets/";
+import { Chapters } from "src/components/widgets/";
 import { Container } from "src/ui/layout";
 import { Subjects } from "src/components/widgets/subjects";
 import { Provider } from "react-redux";
@@ -16,19 +16,7 @@ function App() {
         <GlobalStyles />
         <Container>
           <Header />
-          <Chapters>
-            <Chapter />
-            <Chapter />
-            <Chapter />
-            <Chapter />
-            <Chapter />
-            <Chapter />
-            <Chapter />
-            <Chapter />
-            <Chapter />
-            <Chapter />
-            <Chapter />
-          </Chapters>
+          <Chapters />
           <Subjects />
           <Footer />
         </Container>

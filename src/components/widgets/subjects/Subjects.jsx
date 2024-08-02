@@ -2,21 +2,16 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { CircularProgress, StudyTimeIcon } from "src/components/base";
 import { StyledStudyTime } from "src/ui/widgets";
-// Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-// Import Swiper styles
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/effect-creative";
-
 import "./style.css";
-
-// import required modules
 import { EffectCreative } from "swiper/modules";
 import { theme } from "src/styles/Theme";
-
 import { useGetAllUnitsQuery } from "src/redux/features/api/api-slice";
 import { formatStudyTime, calcUnitProgress } from "src/utils";
+import { useDispatch, useSelector } from "react-redux";
+import { setChapters } from "src/redux/features/chapters/chapters-slice";
 
 export const StyledSubjects = styled.div`
   position: fixed;
@@ -34,7 +29,8 @@ export const StyledSubjects = styled.div`
 `;
 
 export const StyledSubject = styled.div`
-  background-color: ${({ theme }) => theme.colors.veryLightBlue};
+  background-color: ${({ theme, active }) =>
+    active ? theme.colors.veryLightBlue : theme.colors.white};
   color: ${({ theme }) => theme.colors.black};
   border-top-right-radius: 29px;
   border-top-left-radius: 29px;
@@ -47,7 +43,7 @@ export const StyledSubject = styled.div`
 `;
 
 const StyledSubjectBox = styled.div`
-  display: flex;
+  display: ${({ active }) => (active ? "flex" : "none")};
   flex-direction: column;
   align-items: center;
   gap: 0.6rem;
@@ -76,15 +72,32 @@ export const StyledSubjectName = styled.span`
   padding: 0 0.2rem;
   text-align: center;
 `;
+
+export const StyledLoading = styled.div`
+  position: absolute;
+  top: 10%;
+  left: 44%;
+`;
 export const Subjects = () => {
-  const { data, error, isLoading } = useGetAllUnitsQuery();
+  const { data, isLoading } = useGetAllUnitsQuery();
+  const [activeSlide, setActiveSlide] = useState(null);
+  const { name } = useSelector((state) => state.chapters);
+  const dispatch = useDispatch();
+
+  const handleChangeChapters = (id) => {
+    const Unit = data.find((unit) => unit.id === id);
+    const chapters = Unit.hamdarsQUnitLearningContentDtos;
+    dispatch(setChapters({ chapters: chapters, name: Unit.name }));
+  };
 
   useEffect(() => {
-    console.log(data);
-  }, [data]);
+    if (data) handleChangeChapters(data[activeSlide].id);
+  }, [activeSlide, data]);
   return (
     <StyledSubjects>
+      {isLoading && <StyledLoading>...در حال بارگذاری</StyledLoading>}
       <Swiper
+        onSlideChange={(swiper) => setActiveSlide(swiper.realIndex)}
         initialSlide={3}
         loop={true}
         loopedSlides={12}
@@ -114,14 +127,18 @@ export const Subjects = () => {
               unit.hamdarsUserMaxUnitLevelPoint,
               unit.hamdarsUserMinUnitLevelPoint
             );
-            console.log(`${unit.name}: ${progress}`);
             return (
-              <SwiperSlide className="swiper-slide" key={unit.id}>
-                <StyledSubject>
+              <SwiperSlide
+                className="swiper-slide"
+                key={unit.id}
+                id={unit.id}
+                onClick={() => handleChangeChapters(unit.id)}
+              >
+                <StyledSubject active={unit.name === name}>
                   <CircularProgress progress={progress}>
-                    <Image src={unit.unit_icon} alt="adabiayt" />
+                    <Image src={unit.unit_icon} alt={unit.name} />
                   </CircularProgress>
-                  <StyledSubjectBox>
+                  <StyledSubjectBox active={unit.name === name}>
                     <StyledLevelText>
                       سطح {unit.hamdarsUserUnitLevelIndex}
                     </StyledLevelText>

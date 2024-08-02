@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import {
   StyledChapter,
   StyledCard,
@@ -11,14 +11,16 @@ import { StudyTimeIcon } from "src/components/base";
 import { FaChevronLeft } from "react-icons/fa6";
 import { CircularSegmentedProgress } from "src/components/base";
 
-studyTimeInPersian("10:00");
-export const Chapter = ({ details }) => {
-  const [progress, setProgress] = useState(40);
+export const Chapter = ({ chapter, name }) => {
+  const progress = 60;
+  const { hamdarsQUnitLearningContentTypeDesc } = chapter;
 
   return (
     <StyledChapter>
       <StyledCard>
-        <StyledParagraph>فصل 1</StyledParagraph>
+        <StyledParagraph>
+          {hamdarsQUnitLearningContentTypeDesc}:{name}
+        </StyledParagraph>
         <StyledStudyTime>
           <span>{studyTimeInPersian("00:00")}</span>
           <StudyTimeIcon />

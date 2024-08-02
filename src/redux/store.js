@@ -1,13 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { unitAPI } from "src/redux/features/api/api-slice";
+import chapterReducer from "src/redux/features/chapters/chapters-slice";
 
 export const store = configureStore({
   reducer: {
-    // Add the generated reducer as a specific top-level slice
     [unitAPI.reducerPath]: unitAPI.reducer,
+    chapters: chapterReducer,
   },
-  // Adding the api middleware enables caching, invalidation, polling,
-  // and other useful features of `rtk-query`.
+
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(unitAPI.middleware),
 });
