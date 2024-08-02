@@ -5,6 +5,7 @@ import { theme } from "src/styles/Theme";
 import { GlobalStyles } from "src/styles/Global";
 import { Chapters, Chapter } from "src/components/widgets/";
 import { Container } from "src/ui/layout";
+import { Subjects } from "src/components/widgets/subjects";
 
 function App() {
   return (
@@ -19,7 +20,13 @@ function App() {
           <Chapter />
           <Chapter />
           <Chapter />
+          <Chapter />
+          <Chapter />
+          <Chapter />
+          <Chapter />
+          <Chapter />
         </Chapters>
+        <Subjects />
         <Footer />
       </Container>
     </ThemeProvider>

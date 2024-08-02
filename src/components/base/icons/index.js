@@ -1,1 +1,1 @@
-export * from "./StudyTimeIcon"
+export * from "./StudyTimeIcon";

@@ -30,6 +30,8 @@ export const StyledStudyTime = styled.div`
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  font-size: 0.7rem;
+  font-weight: 300;
 `;
 
 export const StyledChevron = styled.span`

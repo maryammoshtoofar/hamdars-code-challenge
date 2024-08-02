@@ -13,11 +13,7 @@ import { CircularSegmentedProgress } from "src/components/base";
 
 studyTimeInPersian("10:00");
 export const Chapter = ({ details }) => {
-  const [progress, setProgress] = useState(0);
-
-  useEffect(() => {
-    setProgress(40);
-  }, []);
+  const [progress, setProgress] = useState(40);
 
   return (
     <StyledChapter>

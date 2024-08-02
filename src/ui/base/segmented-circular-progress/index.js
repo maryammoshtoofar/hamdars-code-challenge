@@ -1,1 +1,1 @@
-export * from "./StyledCircularProgress";
+export * from "./StyledSegmentCircularProgress";

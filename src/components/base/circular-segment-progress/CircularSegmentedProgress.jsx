@@ -1,10 +1,10 @@
 import {
-  ProgressCircle,
-  SVG,
-  CircleBG,
-  Circle,
-  InnerCircle,
-  Image,
+  StyledCircularSegment as ProgressCircle,
+  StyledCircularSegmentSVG as SVG,
+  StyledSegmentCircleBG as CircleBG,
+  StyledSegmentCircle as Circle,
+  StyledSegmentInnerCircle as InnerCircle,
+  StyledSegmentImage as Image,
 } from "src/ui/base";
 import { calcChapterProgress } from "src/utils";
 
@@ -12,6 +12,7 @@ export const CircularSegmentedProgress = ({ progress }) => {
   // calculate how many segments must be shown based on progress
   // which is either 0,20,40,60 or 100
   const progressSegments = calcChapterProgress(progress);
+  
   return (
     <ProgressCircle>
       <SVG viewBox="0 0 36 36">
