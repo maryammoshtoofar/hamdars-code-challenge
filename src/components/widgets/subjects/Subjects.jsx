@@ -17,17 +17,18 @@ import { EffectCreative } from "swiper/modules";
 import { theme } from "../../../styles/Theme";
 
 export const StyledSubjects = styled.div`
-  /* clip-path: path("M 0 300 L 0,75 A 5,5 0,0,1 150,75 L 100 6700 z"); */
   position: fixed;
   top: 70%;
   left: -75%;
   background-color: white;
   z-index: 2;
-  background-color: pink;
   border-radius: 150%;
   width: 250%;
   height: 200%;
   overflow: hidden;
+  box-shadow: -2px -12px 33px -2px rgba(97, 93, 93, 0.44);
+  -webkit-box-shadow: -2px -12px 33px -2px rgba(97, 93, 93, 0.44);
+  -moz-box-shadow: -2px -12px 33px -2px rgba(97, 93, 93, 0.44);
 `;
 
 export const StyledSubject = styled.div`
@@ -35,9 +36,10 @@ export const StyledSubject = styled.div`
   color: ${({ theme }) => theme.colors.black};
   border-top-right-radius: 29px;
   border-top-left-radius: 29px;
-  height: 12rem;
   padding-bottom: 0.5rem;
   display: flex;
+  width: 90%;
+  height: 100%;
   flex-direction: column;
   align-items: center;
 `;
@@ -80,25 +82,28 @@ export const Subjects = () => {
   }, []);
   return (
     <StyledSubjects>
-      dfgdfg
-      {/* <Swiper
+      <Swiper
+        initialSlide={3}
         loop={true}
-        modules={[EffectCreative]}
-        spaceBetween={30}
-        slidesPerView={1}
+        loopedSlides={12}
+        grabCursor={true}
         centeredSlides={true}
         slideToClickedSlide={true}
-        grabCursor={true}
+        slidesPerView={4}
+        spaceBetween={50}
+        modules={[EffectCreative]}
         effect={"creative"}
         creativeEffect={{
-          limitProgress: 30,
+          perspective: true,
+          limitProgress: 3,
           prev: {
-            translate: ["-110%", 50, -13],
+            translate: ["-160%", "20%", -100],
+            // origin: "bottom",
           },
           next: {
-            translate: ["110%", 50, 4],
+            translate: ["140%", "20%", -100],
+            // origin: "bottom",
           },
-          perspective: true,
         }}
         className="mySwiper"
       >
@@ -117,71 +122,67 @@ export const Subjects = () => {
             </StyledSubjectBox>
           </StyledSubject>
         </SwiperSlide>
-        <SwiperSlide>
+        <SwiperSlide className="swiper-slide">
           <StyledSubject>
             <CircularProgress progress={progress}>
-              <Image src="icons/adabiyat.png" alt="adabiayt" />
+              <Image src="icons/biology.png" alt="biology" />
             </CircularProgress>
-            Slide 2
+            <StyledSubjectBox>
+              <StyledLevelText>سطح 1</StyledLevelText>
+              <StyledSubjectName>شیمی 3</StyledSubjectName>
+              <StyledStudyTime>
+                <span>{studyTimeInPersian("23:30")}</span>
+                <StudyTimeIcon color={theme.colors.black} />
+              </StyledStudyTime>
+            </StyledSubjectBox>
           </StyledSubject>
         </SwiperSlide>
-        <SwiperSlide>
+        <SwiperSlide className="swiper-slide">
           <StyledSubject>
             <CircularProgress progress={progress}>
-              <Image src="icons/adabiyat.png" alt="adabiayt" />
+              <Image src="icons/dini.png" alt="dini" />
             </CircularProgress>
-            Slide 3
+            <StyledSubjectBox>
+              <StyledLevelText>سطح 2</StyledLevelText>
+              <StyledSubjectName>شیمی 3</StyledSubjectName>
+              <StyledStudyTime>
+                <span>{studyTimeInPersian("23:30")}</span>
+                <StudyTimeIcon color={theme.colors.black} />
+              </StyledStudyTime>
+            </StyledSubjectBox>
           </StyledSubject>
         </SwiperSlide>
-        <SwiperSlide>
+        <SwiperSlide className="swiper-slide">
           <StyledSubject>
             <CircularProgress progress={progress}>
-              <Image src="icons/adabiyat.png" alt="adabiayt" />
+              <Image src="icons/geometry.png" alt="geometry" />
             </CircularProgress>
-            Slide 4
+            <StyledSubjectBox>
+              <StyledLevelText>سطح 3</StyledLevelText>
+              <StyledSubjectName>شیمی 3</StyledSubjectName>
+              <StyledStudyTime>
+                <span>{studyTimeInPersian("23:30")}</span>
+                <StudyTimeIcon color={theme.colors.black} />
+              </StyledStudyTime>
+            </StyledSubjectBox>
           </StyledSubject>
         </SwiperSlide>
-        <SwiperSlide>
+        <SwiperSlide className="swiper-slide">
           <StyledSubject>
             <CircularProgress progress={progress}>
-              <Image src="icons/adabiyat.png" alt="adabiayt" />
+              <Image src="icons/math.png" alt="math" />
             </CircularProgress>
-            Slide 4
+            <StyledSubjectBox>
+              <StyledLevelText>سطح 4</StyledLevelText>
+              <StyledSubjectName>شیمی 3</StyledSubjectName>
+              <StyledStudyTime>
+                <span>{studyTimeInPersian("23:30")}</span>
+                <StudyTimeIcon color={theme.colors.black} />
+              </StyledStudyTime>
+            </StyledSubjectBox>
           </StyledSubject>
         </SwiperSlide>
-        <SwiperSlide>
-          <StyledSubject>
-            <CircularProgress progress={progress}>
-              <Image src="icons/adabiyat.png" alt="adabiayt" />
-            </CircularProgress>
-            Slide 5
-          </StyledSubject>
-        </SwiperSlide>
-        <SwiperSlide>
-          <StyledSubject>
-            <CircularProgress progress={progress}>
-              <Image src="icons/adabiyat.png" alt="adabiayt" />
-            </CircularProgress>
-            Slide 6
-          </StyledSubject>
-        </SwiperSlide>
-        <SwiperSlide>
-          <StyledSubject>
-            <CircularProgress progress={progress}>
-              <Image src="icons/adabiyat.png" alt="adabiayt" />
-            </CircularProgress>
-            Slide 7
-          </StyledSubject>
-        </SwiperSlide>
-        <SwiperSlide>
-          <StyledSubject>
-            <CircularProgress progress={progress}>
-              <Image src="icons/adabiyat.png" alt="adabiayt" />
-            </CircularProgress>
-            Slide 8
-          </StyledSubject>
-        </SwiperSlide>
-      </Swiper> */}
+      </Swiper>
     </StyledSubjects>
   );
 };
